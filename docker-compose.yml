@@ -1,0 +1,17 @@
+# here we will setup postgres so that we can use it through docker 
+version: '3.0'
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: expenses_db
+    environment:
+      - POSTGRES_DB=expenses_db  # This is the name of the database.
+      - POSTGRES_USER=expenses_user  # Username for the PostgreSQL database.
+      - POSTGRES_PASSWORD=expenses_password  # Password for the PostgreSQL user.
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  
+volumes:  
+  postgres_data:
